@@ -1,7 +1,7 @@
-/* .cardContainer {
-    grid-area: c1;
+.hh {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.cardContainer2 {
-    grid-area: c2;
-} */
