@@ -1,7 +1,24 @@
-.hh {
-    width: 500px;
-    height: 500px;
-    display: flex;
-    flex-wrap: wrap;
+.movie-card {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    margin: 5px auto;
+    box-sizing: border-box;
+    width: 300px;
+    height: auto;
+    /* border: 2px solid black; */
+    font-family: sans-serif;
+    font-size: 18px;
+    transition: 0.4s ease-in-out all;
 }
 
+.movie-card:hover{
+    box-shadow: 2px 30px 30px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.moviePoster {
+    width: 240px;
+    height: 360px;
+    border-radius: 10px;
+}

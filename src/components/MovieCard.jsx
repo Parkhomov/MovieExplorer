@@ -1,31 +1,27 @@
 import "./css/MovieCard.css";
 import React, { useState, useEffect } from 'react';
 import SearchBar from "./SearchBar.jsx";
+import { useNavigate } from "react-router-dom";
 
 
 
 function MCard() { 
     const [movies, setMovies] = useState([]); // Стан для зберігання даних
+    const navigate = useNavigate();
    
-    // const [divs, setDivs] = useState([]);
-    // const addDiv= (id) => { 
-    //       setDivs((prevDivs) =>[ 
-    //         ...prevDivs,
-    //          {id},
-    //         ]);
-    // };
-
     const handleSearch = (movieData) => {
       setMovies(movieData); // Оновлюємо стан отриманими даними
     };
-
-    // useEffect(() => {
-    //     const times = 4; // Кількість викликів
-    //     for (let i = 0; i < times; i++) {
-    //       const uniqueId = `${Date.now()}-${i}`; // Унікальний id
-    //       addDiv(uniqueId);
-    //     }
-    //     }, []); 
+    useEffect(() => {
+      const storedMovies = JSON.parse(sessionStorage.getItem("movies"));
+      if (storedMovies) {
+        setMovies(storedMovies);
+      }
+    }, []);
+    const handleDivClick = (movie) => {
+      navigate("/Details"); // Перехід до сторінки
+      sessionStorage.setItem("selectedMovie", JSON.stringify(movie));
+    };
         
   return (
     <> 
@@ -33,10 +29,11 @@ function MCard() {
         {/* {divs.map((div) => ( */}
         
             {movies.map((movie) => (
-              <div key={movie.imdbID} className="movie-card">
-                <h3>{movie.Title}</h3>
-                <p>{movie.Year}</p>
-                <img src={movie.Poster} alt={movie.Title} />
+              <div onClick={() => handleDivClick(movie)} key={movie.imdbID} className="movie-card">
+                <h3>Title: {movie.Title}</h3>
+                <p>Year: {movie.Year}</p>
+                <p>Type: {movie.Type}</p>
+                <img src={movie.Poster} alt={movie.Title} className="moviePoster"/>
               </div>
             ))}
             

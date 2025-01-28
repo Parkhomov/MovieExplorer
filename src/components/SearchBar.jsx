@@ -18,7 +18,7 @@ function SearchBar({onSearch}) {
       movieApi(inputValue)
         .then((movies) => {
           if (typeof onSearch === "function") {
-            onSearch(movies); // Викликаємо функцію, передану через пропс
+            onSearch(movies);
           } else {
             console.error("onSearch is not a function");
           }
@@ -28,7 +28,7 @@ function SearchBar({onSearch}) {
   }
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      handleClick(); // Вызываем handleClick при нажатии Enter
+      handleClick();
     }
   };
     return (
