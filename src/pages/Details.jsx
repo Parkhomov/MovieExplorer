@@ -1,16 +1,20 @@
-import movieApiDetails from "../api/movieApiDetails";
 import "./css/Details.css";
 
+
 function Details() {
-  const idMovie = JSON.parse(sessionStorage.getItem("selectedMovie"));
-  const k = idMovie.Title;
+  let movie = JSON.parse(sessionStorage.getItem("details"))
     return (
       <>
-        <div className="detailsContainer">
-          <h1>{k}</h1>
-        </div>
+       
+              <div key={movie.imdbID} className="detailsContainer">
+                <h3>Title: {movie.Title}</h3>
+                <p>Year: {movie.Year}</p>
+                <p>Type: {movie.Type}</p>
+                <img src={movie.Poster} alt={movie.Title} className="Details-poster"/>
+              </div>
+          
+        
       </>
     )
-}
-
+  }
 export default Details;

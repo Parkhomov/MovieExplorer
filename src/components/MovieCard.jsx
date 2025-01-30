@@ -2,6 +2,7 @@ import "./css/MovieCard.css";
 import React, { useState, useEffect } from 'react';
 import SearchBar from "./SearchBar.jsx";
 import { useNavigate } from "react-router-dom";
+import movieApiDetails from "../api/movieApiDetails.js";
 
 
 
@@ -18,18 +19,23 @@ function MCard() {
         setMovies(storedMovies);
       }
     }, []);
-    const handleDivClick = (movie) => {
+    const handleDivClick = () => {
       navigate("/Details"); // Перехід до сторінки
-      sessionStorage.setItem("selectedMovie", JSON.stringify(movie));
+      // sessionStorage.setItem("selectedMovie", JSON.stringify(movie));
+      // movieApiDetails();
+      
     };
+    const handleMoveDiv = (movie) => {
+      sessionStorage.setItem("selectedMovie", JSON.stringify(movie));
+      movieApiDetails();
+    }
         
   return (
     <> 
       <SearchBar onSearch={handleSearch}/>
-        {/* {divs.map((div) => ( */}
         
             {movies.map((movie) => (
-              <div onClick={() => handleDivClick(movie)} key={movie.imdbID} className="movie-card">
+              <div onClick={handleDivClick} onMouseOver={() =>handleMoveDiv(movie)} key={movie.imdbID} className="movie-card">
                 <h3>Title: {movie.Title}</h3>
                 <p>Year: {movie.Year}</p>
                 <p>Type: {movie.Type}</p>
@@ -37,8 +43,8 @@ function MCard() {
               </div>
             ))}
             
-        {/* ))
-        } */}
+        
+  
     </>
   );
 };

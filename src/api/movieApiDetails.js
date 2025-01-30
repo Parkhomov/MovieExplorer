@@ -5,18 +5,7 @@ async function movieApiDetails () {
     const movieId = selMovie.imdbID;
     return fetch(`https://www.omdbapi.com/?apikey=${key}&i=${movieId}&plot=full$`)
     .then((response) => response.json())
-    .then((data) => console.log(data));
-    //   if (data.Search) {
-    //     return data.Search; // Повертаємо список фільмів
-    //   } else {
-    //     alert("No movies found!")
-    //     return [];
-    //   }
-    // })
-    // .catch((error) => {
-    //   console.error("Error:", error);
-    //   return [];
-    // });
+    .then((data) => sessionStorage.setItem("details", JSON.stringify(data)));
 } 
-movieApiDetails();
+
 export default movieApiDetails;
