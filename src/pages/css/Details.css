@@ -1,4 +1,110 @@
 .detailsContainer {
     background: linear-gradient(180deg, rgb(245, 245, 245), rgb(220, 220, 220));
-    background-size: cover;
+    height: auto;
+    display: grid;
+    margin: 0 auto;
+    max-width: 100%;
+    grid-template-areas: 
+    "t  d"
+    "m  m ";
+    grid-template-columns: auto;
+}
+
+.details-poster {
+    margin: 10px;
+    width: 350px;
+    grid-area: t;
+    position: relative;
+    top: 80px;
+}
+
+.poster-center {
+    display: block;
+    text-align: center;
+    grid-area: t;
+}
+
+.details-title {
+    margin: 15px 15px 0px 25px;
+    grid-area: t;
+    text-align: center;
+}
+
+.details-descrition {
+    grid-area: d;
+}
+
+.general {
+    margin: 10px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.ratings {
+    margin: 10px;
+    font-size: 24px;
+    font-weight: 800;
+    position: relative;
+    top: 70px;
+}
+
+.year {
+    margin: 80px 10px 10px 10px;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.type {
+    margin: 10px;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.trailer {   
+    position: relative;
+    width: 100%;
+    max-width: 800px; 
+    margin: 10px auto; 
+    aspect-ratio: 16 / 9; 
+}
+
+.trailer iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+iframe {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.title-trailer {
+    text-align: center;
+    margin: 10px;
+    position: relative;
+    top: 50px;
+}
+
+.div-trailer {
+    grid-area: m;
+}
+
+@media screen and (max-width:768px) {
+    .detailsContainer {
+        grid-template-areas: 
+        "t"
+        "d"
+        "m";
+        width: 100wv;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .trailer {
+        width: 80%;
+        height: 100%;
+        border: none;
+    }
 }

@@ -3,12 +3,14 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from "./SearchBar.jsx";
 import { useNavigate } from "react-router-dom";
 import movieApiDetails from "../api/movieApiDetails.js";
+import movieApiYoutube from "../api/movieApiYoutube.js";
 
 
 
 function MCard() { 
     const [movies, setMovies] = useState([]); // Стан для зберігання даних
     const navigate = useNavigate();
+    const [isFavorite, setIsFavorite] = useState({}); // Стан для відстеження
    
     const handleSearch = (movieData) => {
       setMovies(movieData); // Оновлюємо стан отриманими даними
@@ -19,23 +21,24 @@ function MCard() {
         setMovies(storedMovies);
       }
     }, []);
-    const handleDivClick = () => {
-      navigate("/Details"); // Перехід до сторінки
-      // sessionStorage.setItem("selectedMovie", JSON.stringify(movie));
-      // movieApiDetails();
-      
+    const handleDivClick = (movieTitle) => {
+      movieApiYoutube(movieTitle);
+      setTimeout(() => {
+        navigate("/Details"); 
+      }, 500);
     };
     const handleMoveDiv = (movie) => {
       sessionStorage.setItem("selectedMovie", JSON.stringify(movie));
       movieApiDetails();
     }
+   
         
   return (
     <> 
       <SearchBar onSearch={handleSearch}/>
         
             {movies.map((movie) => (
-              <div onClick={handleDivClick} onMouseOver={() =>handleMoveDiv(movie)} key={movie.imdbID} className="movie-card">
+              <div onClick={() => handleDivClick(movie.Title)} onMouseOver={() =>handleMoveDiv(movie)} key={movie.imdbID} className="movie-card">
                 <h3>Title: {movie.Title}</h3>
                 <p>Year: {movie.Year}</p>
                 <p>Type: {movie.Type}</p>
